@@ -1,1 +1,1 @@
-[kurssitiedot](./kurssitiedot)
+[kurssitiedot](./kurssitiedot/src/App.js)
