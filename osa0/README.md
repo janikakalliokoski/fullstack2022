@@ -1,5 +1,3 @@
-## tehtävät:
-
 [0.4](./tehtävät/0.4.png)
 
 [0.5](./tehtävät/0.5.png)
