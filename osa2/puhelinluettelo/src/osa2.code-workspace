@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "osa2",
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"files.watcherExclude": {
+			"**/target": true
+		}
+	}
+}

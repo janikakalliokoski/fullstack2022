@@ -1,27 +1,25 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import Persons from './components/Persons'
 import PersonForm from './components/PersonForm'
 import Filter from './components/Filter'
+import Notification from './components/Notification'
+
+import personService from './services/persons'
 
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [newFilter, setNewFilter] = useState('')
-  // const [showAll, setShowAll] = useState(true)
+  const [successfulMessage, setSuccesfulMessage] = useState(null)
 
-  const hook = () => {
-    console.log('effect')
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
-        console.log('promise fulfilled')
-        setPersons(response.data)
-      })
-  }
-
-  useEffect(hook, [])
+  useEffect(() => {
+    personService
+      .getAll()
+        .then(initialPersons => {
+          setPersons(initialPersons)
+        })
+  }, [])
 
   const addFilter = (event) => {
     event.preventDefault()
@@ -36,13 +34,37 @@ const App = () => {
       number: newNumber
     }
     if (personsArray.includes(`${personObject.name}`)) {
-      window.alert(`${newName} is already added to phonebook`)
+      if (window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)) {
+        const personId = persons[personsArray.indexOf(newName)].id
+        console.log(personId)
+        personService
+          .update(personId, personObject)
+          .then(returnedPerson => {
+            setPersons(persons.map(person => person.id !== personId ? person : returnedPerson))
+            setNewName('')
+            setNewNumber('')
+          })
+      }
+      else {
+        setNewName('')
+        setNewNumber('')
+      }
     }
-    else {setPersons(persons.concat(personObject))
-      setNewName('')
-      setNewNumber('')
+    else {
+      personService
+      .create(personObject)
+        .then(returnedPerson => {
+        setPersons(persons.concat(returnedPerson))
+        setNewName('')
+        setNewNumber('')
+        setSuccesfulMessage(`Added ${newName}`)
+        setTimeout(() => {
+          setSuccesfulMessage(null)
+        }, 5000)
+      })
     }
   }
+
 
   const handleNameChange = (event) => {
     console.log(event.target.value)
@@ -61,9 +83,21 @@ const App = () => {
 
   console.log(persons)
 
+  const removePerson = (person) => {
+
+    if (window.confirm(`Do you want to delete ${person.name} from the phonebook?`)) {
+      personService
+        .remove(person.id)
+        .then(() => {
+          setPersons(removedPerson => removedPerson.filter(({ id }) => id !== person.id))
+        })
+    }
+  }
+
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={successfulMessage} />
       <Filter
         addFilter={addFilter}
         newFilter={newFilter}
@@ -79,7 +113,7 @@ const App = () => {
         />
       <h2>Numbers</h2>
         <div>
-          <Persons persons={persons} filter={newFilter}/>
+          <Persons persons={persons} removePerson={removePerson} filter={newFilter}/>
         </div>
     </div>
   )
