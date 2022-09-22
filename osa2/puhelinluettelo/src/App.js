@@ -3,6 +3,7 @@ import Persons from './components/Persons'
 import PersonForm from './components/PersonForm'
 import Filter from './components/Filter'
 import Notification from './components/Notification'
+import Error from './components/Error'
 
 import personService from './services/persons'
 
@@ -12,6 +13,7 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('')
   const [newFilter, setNewFilter] = useState('')
   const [successfulMessage, setSuccesfulMessage] = useState(null)
+  const [errormessage, setError] = useState(null)
 
   useEffect(() => {
     personService
@@ -36,13 +38,25 @@ const App = () => {
     if (personsArray.includes(`${personObject.name}`)) {
       if (window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)) {
         const personId = persons[personsArray.indexOf(newName)].id
-        console.log(personId)
+        //console.log(personId)
         personService
           .update(personId, personObject)
           .then(returnedPerson => {
             setPersons(persons.map(person => person.id !== personId ? person : returnedPerson))
             setNewName('')
             setNewNumber('')
+            setSuccesfulMessage(`${newName} number changed`)
+            setTimeout(() => {
+              setSuccesfulMessage(null)
+            }, 2000)
+          })
+          .catch(error => {
+            console.log(error.response.data)
+            setError(`${newName} already removed`)
+            setTimeout(() => {
+              setError(null)
+            }, 5000)
+            setPersons(removedPerson => removedPerson.filter(({ id }) => id !== personId))
           })
       }
       else {
@@ -51,6 +65,7 @@ const App = () => {
       }
     }
     else {
+
       personService
       .create(personObject)
         .then(returnedPerson => {
@@ -62,6 +77,7 @@ const App = () => {
           setSuccesfulMessage(null)
         }, 5000)
       })
+
     }
   }
 
@@ -81,7 +97,7 @@ const App = () => {
     setNewFilter(event.target.value)
   }
 
-  console.log(persons)
+  //console.log(persons)
 
   const removePerson = (person) => {
 
@@ -98,6 +114,7 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
       <Notification message={successfulMessage} />
+      <Error message={errormessage} />
       <Filter
         addFilter={addFilter}
         newFilter={newFilter}
