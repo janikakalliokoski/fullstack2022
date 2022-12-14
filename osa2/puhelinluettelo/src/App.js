@@ -38,7 +38,7 @@ const App = () => {
     if (personsArray.includes(`${personObject.name}`)) {
       if (window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)) {
         const personId = persons[personsArray.indexOf(newName)].id
-        //console.log(personId)
+        console.log(personId)
         personService
           .update(personId, personObject)
           .then(returnedPerson => {
@@ -83,17 +83,14 @@ const App = () => {
 
 
   const handleNameChange = (event) => {
-    console.log(event.target.value)
     setNewName(event.target.value)
   }
 
   const handleNumberChange = (event) => {
-    console.log(event.target.value)
     setNewNumber(event.target.value)
   }
 
   const handleFilterChange = (event) => {
-    console.log(event.target.value)
     setNewFilter(event.target.value)
   }
 
