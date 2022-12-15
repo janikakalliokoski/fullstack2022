@@ -65,7 +65,6 @@ const App = () => {
       }
     }
     else {
-
       personService
       .create(personObject)
         .then(returnedPerson => {
@@ -77,7 +76,14 @@ const App = () => {
           setSuccesfulMessage(null)
         }, 5000)
       })
-
+      .catch(error => {
+        console.log("error")
+        console.log(error.response.data)
+        setError(`name: Path name is shorter than the minimum allowed length (3) or number must be in correct form i.e. 09-123456 or 044-123456`)
+        setTimeout(() => {
+          setError(null)
+        }, 5000)
+      })
     }
   }
 

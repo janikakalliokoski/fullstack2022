@@ -8,12 +8,25 @@ const Person = ({ person, removePerson }) => {
 }
 
 const Persons = ({ persons, removePerson, filter }) => {
-  return (
-    persons.filter(person => person.name.toLowerCase().includes(filter.toLowerCase()))
-    .map(person =>
-      <Person key={person.id} person={person} removePerson={removePerson} />
-      )
-  )
+  if (filter === '') {
+    return (
+      <div>
+        {persons.map(person =>
+          <Person key={person.id} person={person} removePerson={removePerson} />
+        )}
+      </div>
+    )
+  } else {
+    const filteredPersons = persons.filter(person => person.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1)
+
+    return (
+      <div>
+        {filteredPersons.map(person =>
+          <Person key={person.id} person={person} removePerson={removePerson} />
+        )}
+      </div>
+    )
+  }
 }
 
 export default Persons
