@@ -1,8 +1,0 @@
-2022.09.05 13:47:49 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/jbkallio/fullstack2022/osa2/.metals/lsp.trace.json or /home/jbkallio/.cache/metals/lsp.trace.json
-2022.09.05 13:47:49 INFO  logging to file /home/jbkallio/fullstack2022/osa2/.metals/metals.log
-2022.09.05 13:47:49 INFO  Started: Metals version 0.11.7 in workspace '/home/jbkallio/fullstack2022/osa2' for client Visual Studio Code 1.70.1.
-2022.09.05 13:47:50 INFO  time: initialize in 0.57s
-2022.09.05 13:47:50 WARN  Flyway upgrade recommended: H2 2.1.214 is newer than this version of Flyway and support has not been tested. The latest supported version of H2 is 2.1.210.
-2022.09.05 13:47:50 WARN  Build server is not auto-connectable.
-2022.09.05 13:47:50 WARN  no build tool detected in workspace '/home/jbkallio/fullstack2022/osa2'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
-2022.09.05 13:49:17 INFO  shutting down Metals
