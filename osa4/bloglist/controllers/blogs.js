@@ -3,10 +3,10 @@ const Blog = require('../models/blog')
 
 blogsRouter.get('/', (request, response) => {
     Blog
-      .find({})
-      .then(blogs => {
-        response.json(blogs)
-    })
+        .find({})
+        .then(blogs => {
+            response.json(blogs)
+        })
 })
 
 blogsRouter.post('/', (request, response, next) => {
@@ -22,9 +22,9 @@ blogsRouter.post('/', (request, response, next) => {
     blog
         .save()
         .then(savedBlog => {
-        response.json(savedBlog)
-    })
-    .catch(error => next(error))
+            response.json(savedBlog)
+        })
+        .catch(error => next(error))
 })
 
 module.exports = blogsRouter
