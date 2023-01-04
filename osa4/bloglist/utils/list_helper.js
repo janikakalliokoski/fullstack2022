@@ -33,24 +33,32 @@ const mostBlogs = (blogs) => {
     }
 }
 
-const likesOfMostBlogs = (blogs) => {
-    const authors = blogs.map(a => a.author)
-    const likes = blogs.map(blog => blog.likes)
+const mostLikes = (blogs) => {
+    const authors = blogs.map(({ author, likes }) => ({ author, likes }))
 
     var obj = {}
+
     for (var i = 0; i < authors.length; i++) {
-        obj[authors[i]] = 0
+        obj[authors[i].author] = 0
     }
 
     for (var j = 0; j < authors.length; j++) {
-        obj[authors[j]] += likes[j]
+        obj[authors[j].author] += authors[j].likes
     }
+
+    let sortable = []
+    for (var author in obj) {
+        sortable.push([author, obj[author]])
+    }
+
+    sortable.sort(function(a, b) {
+        return b[1] - a[1]
+    })
 
     return {
-        author: Object.keys(obj)[0],
-        likes: Object.values(obj)[0]
+        author: sortable[0][0],
+        likes: sortable[0][1]
     }
-
 }
 
 module.exports = {
@@ -58,5 +66,5 @@ module.exports = {
     totalLikes,
     favoriteBlog,
     mostBlogs,
-    likesOfMostBlogs
+    mostLikes
 }

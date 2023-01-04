@@ -1,9 +1,10 @@
 POST http://localhost:3003/api/blogs/
 Content-Type: application/json
+Authorization: bearer hyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphbmlrYV90ZXN0YWFqYSIsImlkIjoiNjNiNTQxOTgxZDgyZmEyNWM0NDg4MzU2IiwiaWF0IjoxNjcyODI0ODQwfQ.YLErN8tMlNzvEJ13Hg70eImTTQk0KDrR2Bc0bvkmvnE
 
 {
-    "title": 123456,
+    "title": "uusi blogi",
     "author": "janika",
     "url": "google.com",
-    "likes": 0
+    "likes": 10
 }
