@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
+// require('dotenv').config()
+
 const Country = (props) => {
   return (
     <div>
@@ -31,7 +33,7 @@ const ShowCountry = ({ country }) => {
       .then(response => {
         setWeather(response.data)
       })
-  }, [])
+  }, [country.capital])
   console.log(weather)
   return (
     <div>
@@ -51,7 +53,7 @@ const ShowCountry = ({ country }) => {
       />
       <h2>Weather in {country.capital}</h2>
       <p>temperature {weather?.main.temp ?? ''} Celcius</p>
-      {weather?.weather ? <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}></img> : <p>weather icon</p>}
+      {weather?.weather ? <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt="weather icon"></img> : <p>weather icon</p>}
       <p>wind {weather?.wind.speed ?? ''} m/s</p>
 
     </div>
