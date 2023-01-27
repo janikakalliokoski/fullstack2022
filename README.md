@@ -9,3 +9,5 @@
 ### [osan 3 tehtävät](https://github.com/janikakalliokoski/fullstack2022_osa3)
 
 ### [osan 4 tehtävät](https://github.com/janikakalliokoski/fullstack2022/tree/main/osa4/bloglist)
+
+### [osan 5 tehtävät](https://github.com/janikakalliokoski/fullstack2022/tree/main/osa5/bloglist-frontend)
