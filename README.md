@@ -12,5 +12,5 @@
 
 ### [osan 5 tehtävät](https://github.com/janikakalliokoski/fullstack2022/tree/main/osa5/bloglist-frontend)
 
-### [osan 6 tehtävät](https://github.com/janikakalliokoski/fullstack2022/tree/main/osa6/redux-anecdotes
+### [osan 6 tehtävät](https://github.com/janikakalliokoski/fullstack2022/tree/main/osa6/redux-anecdotes)
 - [query-anecdotes tehtävät täällä](https://github.com/janikakalliokoski/fullstack2022/tree/main/query-anecdotes)
