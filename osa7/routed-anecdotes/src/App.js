@@ -66,10 +66,6 @@ const CreateNew = (props) => {
   const {reset: resetAuthor, ...author} = useField('text')
   const {reset: resetInfo, ...info} = useField('text')
 
-  // const content = useField('text')
-  // const author = useField('text')
-  // const info = useField('text')
-
   const navigate = useNavigate()
 
   const handleSubmit = (e) => {
