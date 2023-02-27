@@ -14,3 +14,5 @@
 
 ### [osan 6 tehtävät](https://github.com/janikakalliokoski/fullstack2022/tree/main/osa6/redux-anecdotes)
 - [query-anecdotes tehtävät täällä](https://github.com/janikakalliokoski/fullstack2022/tree/main/query-anecdotes)
+
+### [osan 7 tehtävät](https://github.com/janikakalliokoski/fullstack2022/tree/main/osa7/routed-anecdotes)
